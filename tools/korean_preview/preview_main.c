@@ -294,7 +294,8 @@ static void show_cards(void) {
         session.len = (uint8_t)(10 - i);
         char name[48];
         ko_card_view_t view = ko_view_card(&s_env, &route, &session, false);
-        if (i == 0) ko_ui_show_card(&view); else ko_ui_update_card(&view);
+        // 每张卡都来自不同主题：重建页面，页眉才会显示这张卡自己的主题名。
+        ko_ui_show_card(&view);
         snprintf(name, sizeof(name), "20_word%u_front", i);
         capture(name);
         view = ko_view_card(&s_env, &route, &session, true);
@@ -310,7 +311,7 @@ static void show_cards(void) {
     for (unsigned i = 0; i < sizeof(phrases) / sizeof(phrases[0]); i++) {
         const ko_route_t route = card_route_for(KO_KIND_PHRASE, phrases[i], &session);
         const ko_card_view_t view = ko_view_card(&s_env, &route, &session, true);
-        ko_ui_update_card(&view);
+        ko_ui_show_card(&view);
         char name[48];
         snprintf(name, sizeof(name), "22_phrase%u_back", i);
         capture(name);
@@ -320,7 +321,7 @@ static void show_cards(void) {
     s_env.has_clip = NULL;
     const ko_route_t route = card_route_for(KO_KIND_WORD, "빨간색", &session);
     ko_card_view_t no_audio = ko_view_card(&s_env, &route, &session, false);
-    ko_ui_update_card(&no_audio);
+    ko_ui_show_card(&no_audio);
     capture("23_word_no_audio_front");
     s_env.has_clip = preview_has_clip;
 
