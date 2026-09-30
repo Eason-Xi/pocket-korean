@@ -1,0 +1,18 @@
+build/
+sdkconfig
+sdkconfig.old
+managed_components/
+.vscode/
+.idea/
+
+# Generated repository-local links; canonical skill sources live in skills/.
+/.agents/skills/passport-develop
+/.agents/skills/passport-setup
+/.agents/skills/passport-build
+/.agents/skills/passport-device-test
+/.agents/skills/passport-debug
+
+# Korean learner: the pronunciation pack is generated locally from a third-party TTS service.
+# Whether its audio may be redistributed depends on that service's terms, so it stays out of
+# Git by default (see README.md). Regenerate with tools/korean_audio.py.
+/assets/audio/generated/
